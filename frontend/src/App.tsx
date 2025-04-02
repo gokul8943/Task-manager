@@ -1,4 +1,5 @@
 import {Routes,Route} from 'react-router-dom'
+
 import LoginPage from './pages/user/LoginPage'
 import SignUpPage from './pages/user/SignUpPage'
 import Navbar from './components/task/Navbar'
