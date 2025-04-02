@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { ReactNode } from "react";
+
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Menu, X } from 'lucide-react';
 import {
@@ -69,8 +71,14 @@ const TaskManagerNavbar = () => {
   );
 };
 
+
+interface MobileMenuItemProps {
+  children: ReactNode;
+  className?: string;
+}
+
 // Mobile menu item component
-const MobileMenuItem = ({ children, className = "" }) => (
+const MobileMenuItem: React.FC<MobileMenuItemProps> = ({ children, className = "" }) => (
   <a
     href="#"
     className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 ${className}`}

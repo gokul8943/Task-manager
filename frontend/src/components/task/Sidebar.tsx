@@ -1,18 +1,13 @@
-import { useState } from 'react';
-import { 
-  CheckCircle, 
-  Home, 
-  CheckSquare, 
-  Calendar, 
-  Settings, 
-  HelpCircle, 
-  Users, 
+import { ReactNode, useState } from 'react';
+import {
+  CheckCircle,
+  Home,
+  CheckSquare,
+  Settings,
+  Users,
   PlusSquare,
-  Briefcase,
-  Star,
   ChevronRight,
   ChevronLeft,
-  BarChart2,
   FileText,
   LogOut
 } from 'lucide-react';
@@ -24,7 +19,7 @@ import {
 } from '@/components/ui/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-const TaskManagerSidebar = () => {
+const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,7 +34,7 @@ const TaskManagerSidebar = () => {
   return (
     <>
       {/* Mobile Overlay */}
-      <div 
+      <div
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden ${isOpen ? 'block' : 'hidden'}`}
         onClick={toggleMobileSidebar}
       />
@@ -53,7 +48,7 @@ const TaskManagerSidebar = () => {
       </button>
 
       {/* Sidebar */}
-      <div 
+      <div
         className={`
           fixed top-0 left-0 z-50 h-full bg-white shadow-lg transition-all duration-300 flex flex-col
           ${collapsed ? 'w-16' : 'w-64'} 
@@ -81,14 +76,14 @@ const TaskManagerSidebar = () => {
         </div>
 
         {/* User Profile */}
-       
+
 
         {/* Navigation - Top Section */}
         <div className="p-2 overflow-y-auto flex-grow">
           <nav className="space-y-1">
             <SidebarItem icon={<Home size={20} />} text="Dashboard" active collapsed={collapsed} />
             <SidebarItem icon={<CheckSquare size={20} />} text="Tasks" collapsed={collapsed} />
-            <SidebarItem icon={<Calendar size={20} />} text="Calendar" collapsed={collapsed} />
+            {/* <SidebarItem icon={<Calendar size={20} />} text="Calendar" collapsed={collapsed} /> */}
             <SidebarItem icon={<PlusSquare size={20} />} text="Projects" collapsed={collapsed} />
             <SidebarItem icon={<FileText size={20} />} text="Notes" collapsed={collapsed} />
             <SidebarItem icon={<Users size={20} />} text="Team" collapsed={collapsed} />
@@ -131,17 +126,25 @@ const TaskManagerSidebar = () => {
             <SidebarItem icon={<LogOut size={20} />} text="Logout" collapsed={collapsed} danger />
           </nav>
         </div>
-        
+
       </div>
     </>
   );
 };
 
-const SidebarItem = ({ icon, text, active = false, collapsed = false, danger = false }) => {
+interface SidebarItems{
+  icon: ReactNode;
+  text:any
+  active?: boolean;
+  collapsed?: boolean;
+  danger?: boolean  
+}
+
+const SidebarItem: React.FC<SidebarItems> = ({ icon, text, active = false, collapsed = false, danger = false }) => {
   const baseClasses = `
     flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors
-    ${active 
-      ? 'bg-blue-50 text-blue-600' 
+    ${active
+      ? 'bg-blue-50 text-blue-600'
       : danger
         ? 'text-red-600 hover:bg-red-50'
         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
@@ -169,4 +172,4 @@ const SidebarItem = ({ icon, text, active = false, collapsed = false, danger = f
   );
 };
 
-export default TaskManagerSidebar;
+export default Sidebar;
