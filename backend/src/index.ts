@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { connectDb } from './config/dbConnect';
+import userRouter from './routes/authRoutes';
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,10 @@ connectDb();
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+
+app.use('/user',userRouter)
+
 
 app.listen(Port, () => {
     console.log('Server is running on port 3000');

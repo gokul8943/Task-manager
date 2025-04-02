@@ -20,7 +20,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -35,15 +35,14 @@ const Sidebar = () => {
     <>
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden ${
-          isOpen ? "block" : "hidden"
-        }`}
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden ${isOpen ? "block" : "hidden"
+          }`}
         onClick={toggleMobileSidebar}
       />
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full bg-white shadow-lg transition-all duration-300 flex flex-col 
+        className={`fixed top-0 left-0 z-50 h-full bg-white shadow-lg transition-all duration-300 ease-in-out flex flex-col 
           ${collapsed ? "w-16" : "w-64"} 
           ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
@@ -67,7 +66,7 @@ const Sidebar = () => {
         <div className="p-2 overflow-y-auto flex-grow">
           <nav className="space-y-1">
             <SidebarItem icon={<Home size={20} />} text="Dashboard" active collapsed={collapsed} />
-            <SidebarItem icon={<CheckSquare size={20} />} text="Tasks" collapsed={collapsed} />
+            <SidebarItem icon={<CheckSquare size={20} />} text="Manage Tasks" collapsed={collapsed} />
             <SidebarItem icon={<PlusSquare size={20} />} text="Projects" collapsed={collapsed} />
             <SidebarItem icon={<FileText size={20} />} text="Notes" collapsed={collapsed} />
             <SidebarItem icon={<Users size={20} />} text="Team" collapsed={collapsed} />
@@ -139,8 +138,8 @@ const SidebarItem: React.FC<SidebarItems> = ({ icon, text, active = false, colla
     ${active
       ? "bg-blue-50 text-blue-600"
       : danger
-      ? "text-red-600 hover:bg-red-50"
-      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"}
+        ? "text-red-600 hover:bg-red-50"
+        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"}
   `;
 
   return collapsed ? (
